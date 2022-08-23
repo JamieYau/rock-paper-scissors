@@ -1,28 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors!</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        function getComputerChoice() {
-            let random = Math.floor(Math.random() * 3);
-            switch(random){
-                case 0:
-                    return "Rock";
-                case 1:
-                    return "Paper";
-                case 2:
-                    return "Scissors";
-            }
+      function getComputerChoice() {
+        let random = Math.floor(Math.random() * 3);
+        switch (random) {
+          case 0:
+            return "rock";
+          case 1:
+            return "paper";
+          case 2:
+            return "scissors";
         }
+      }
 
-        for (let i = 0; i < 10; i++) {
-            console.log(getComputerChoice());
+      function playRound(playerSelection, computerSelection) {
+        playerSelection = playerSelection.toLowerCase();
+        if (playerSelection === computerSelection) {
+          return "Tie";
+        } else if (playerSelection == "rock") {
+          if (computerSelection == "paper") {
+            return "You Lose! Paper beats Rock";
+          } else {
+            return "You Won! Rock beats Paper";
+          }
+        } else if (playerSelection == "scissors") {
+          if (computerSelection == "rock") {
+            return "You Lose! Rock beats Scissors";
+          } else {
+            return "You Won! Scissors beats Paper";
+          }
+        } else if (playerSelection == "paper") {
+          if (computerSelection == "scissors") {
+            return "You Lose! Scissors beats Paper";
+          } else {
+            return "You Won! Paper beats Rock";
+          }
         }
+      }
+
+      for (let i = 0; i < 10; i++) {
+        console.log(playRound("rock", getComputerChoice()));
+      }
     </script>
-</body>
+  </body>
 </html>
