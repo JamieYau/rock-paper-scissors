@@ -8,47 +8,33 @@
   </head>
   <body>
     <script>
+      const weapons = {
+        Rock: { losesTo: "Paper", beats: "Scissors" },
+        Paper: { losesTo: "Scissors", beats: "Rock" },
+        Scissors: { losesTo: "Rock", beats: "Paper" },
+      };
+
       function getComputerChoice() {
         let random = Math.floor(Math.random() * 3);
-        switch (random) {
-          case 0:
-            return "rock";
-          case 1:
-            return "paper";
-          case 2:
-            return "scissors";
-        }
+        let selection = Object.keys(weapons)[random]
+        return selection;
       }
 
       function playRound(playerSelection, computerSelection) {
-        playerSelection = playerSelection.toLowerCase();
+        playerSelection = playerSelection[0].toUpperCase() + playerSelection.substring(1);
         if (playerSelection === computerSelection) {
           return "Tie";
-        } else if (playerSelection == "rock") {
-          if (computerSelection == "paper") {
-            return "You Lose! Paper beats Rock";
-          } else {
-            return "You Won! Rock beats Paper";
-          }
-        } else if (playerSelection == "scissors") {
-          if (computerSelection == "rock") {
-            return "You Lose! Rock beats Scissors";
-          } else {
-            return "You Won! Scissors beats Paper";
-          }
-        } else if (playerSelection == "paper") {
-          if (computerSelection == "scissors") {
-            return "You Lose! Scissors beats Paper";
-          } else {
-            return "You Won! Paper beats Rock";
-          }
+        } else if (weapons[playerSelection].beats === computerSelection) {
+          return "You Won! " + playerSelection + " beats " + computerSelection;
+        } else if (weapons[playerSelection].losesTo === computerSelection) {
+            return "You Lost! " + playerSelection + " loses to " + computerSelection;
         }
       }
 
       function game() {
         for (let i = 0; i < 5; i++) {
-            let input = prompt("Rock, Paper or Scissors?")
-            console.log(playRound(input, getComputerChoice()));
+          let input = prompt("Rock, Paper or Scissors?");
+          console.log(playRound(input, getComputerChoice()));
         }
       }
       game();
