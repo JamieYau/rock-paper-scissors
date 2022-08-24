@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rock Paper Scissors!</title>
-  </head>
-  <body>
-    <script>
-      const weapons = {
-        Rock: { losesTo: "Paper", beats: "Scissors" },
-        Paper: { losesTo: "Scissors", beats: "Rock" },
-        Scissors: { losesTo: "Rock", beats: "Paper" },
-      };
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rock Paper Scissors!</title>
+</head>
+<body>
+  <button class="button" id="Rock">Rock</button>
+  <button class="button" id="Paper">Paper</button>
+  <button class="button" id="Scissors">Scissors</button>
 
-      function getComputerChoice() {
-        let random = Math.floor(Math.random() * 3);
-        let selection = Object.keys(weapons)[random]
-        return selection;
-      }
+  <script>
+    const weapons = {
+      Rock: { losesTo: "Paper", beats: "Scissors" },
+      Paper: { losesTo: "Scissors", beats: "Rock" },
+      Scissors: { losesTo: "Rock", beats: "Paper" },
+    };
 
-      function playRound(playerSelection, computerSelection) {
-        playerSelection = playerSelection[0].toUpperCase() + playerSelection.substring(1);
-        if (playerSelection === computerSelection) {
-          return "Tie";
-        } else if (weapons[playerSelection].beats === computerSelection) {
-          return "You Won! " + playerSelection + " beats " + computerSelection;
-        } else if (weapons[playerSelection].losesTo === computerSelection) {
-            return "You Lost! " + playerSelection + " loses to " + computerSelection;
-        }
-      }
+    function getComputerChoice() {
+      let random = Math.floor(Math.random() * 3);
+      let selection = Object.keys(weapons)[random]
+      return selection;
+    }
 
-      function game() {
-        for (let i = 0; i < 5; i++) {
-          let input = prompt("Rock, Paper or Scissors?");
-          console.log(playRound(input, getComputerChoice()));
-        }
+    function playRound(playerSelection, computerSelection) {
+      playerSelection = playerSelection[0].toUpperCase() + playerSelection.substring(1);
+      if (playerSelection === computerSelection) {
+        return "Tie";
+      } else if (weapons[playerSelection].beats === computerSelection) {
+        return "You Won! " + playerSelection + " beats " + computerSelection;
+      } else if (weapons[playerSelection].losesTo === computerSelection) {
+        return "You Lost! " + playerSelection + " loses to " + computerSelection;
       }
-      game();
-    </script>
-  </body>
+    }
+
+    function clicked(e) {
+      console.log(e.target.id);
+      console.log(playRound(e.target.id,getComputerChoice()));
+    }
+
+    const buttons = Array.from(document.querySelectorAll(".button"))
+    buttons.forEach(button => button.addEventListener("click", clicked));
+
+  </script>
+</body>
 </html>
