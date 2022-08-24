@@ -35,9 +35,9 @@ function displayScore() {
 }
 
 function checkWinner() {
-  if (playerScore < 5 && computerScore < 5) return;
+  if (compScore === 5) alert("You Lost!");
   if (playerScore === 5) alert("You Won!");
-  else alert("You Lost!");
+  else return;
 }
 
 function clicked(e) {
