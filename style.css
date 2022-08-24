@@ -3,7 +3,34 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 0;
+    padding: 50px;
+}
+
+.container {
+    background-color: cadetblue;
+    padding: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    font-size: 30px;
+    width: 150px;
+    height: 150px;
+}
+
+.main {
+    display: flex;
+    gap: 100px;
+    background-color: cadetblue;
+    padding-bottom: 50px;
 }
 
 .scoreboard {
