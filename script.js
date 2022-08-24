@@ -1,5 +1,7 @@
 let playerScore = 0;
 let compScore = 0;
+const player = document.querySelector("#player_score");
+const computer = document.querySelector("#comp_score");
 
 const weapons = {
   Rock: { losesTo: "Paper", beats: "Scissors" },
@@ -27,13 +29,22 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+function displayScore() {
+  player.textContent = playerScore;
+  computer.textContent = compScore;
+}
+
+function checkWinner() {
+  if (playerScore < 5 && computerScore < 5) return;
+  if (playerScore === 5) alert("You Won!");
+  else alert("You Lost!");
+}
+
 function clicked(e) {
   const result = document.querySelector("#result");
   result.textContent = playRound(e.target.id, getComputerChoice());
-  const player = document.querySelector("#player_score");
-  const computer = document.querySelector("#comp_score");
-  player.textContent = playerScore;
-  computer.textContent = compScore;
+  displayScore();
+  checkWinner();
 }
 
 const buttons = Array.from(document.querySelectorAll(".button"));
