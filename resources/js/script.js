@@ -4,9 +4,9 @@ const player = document.querySelector("#player_score");
 const computer = document.querySelector("#comp_score");
 
 const weapons = {
-  Rock: { losesTo: "Paper", beats: "Scissors" },
-  Paper: { losesTo: "Scissors", beats: "Rock" },
-  Scissors: { losesTo: "Rock", beats: "Paper" },
+  rock: { losesTo: "paper", beats: "scissors" },
+  paper: { losesTo: "scissors", beats: "rock" },
+  scissors: { losesTo: "rock", beats: "paper" },
 };
 
 function getComputerChoice() {
@@ -16,16 +16,24 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  playerSelection =
-    playerSelection[0].toUpperCase() + playerSelection.substring(1);
   if (playerSelection === computerSelection) {
     return "Tie";
   } else if (weapons[playerSelection].beats === computerSelection) {
     playerScore++;
-    return "You Won! " + playerSelection + " beats " + computerSelection;
+    return (
+      "You Won! " +
+      playerSelection.toUpperCase() +
+      " beats " +
+      computerSelection.toUpperCase()
+    );
   } else if (weapons[playerSelection].losesTo === computerSelection) {
     compScore++;
-    return "You Lost! " + playerSelection + " loses to " + computerSelection;
+    return (
+      "You Lost! " +
+      playerSelection.toUpperCase() +
+      " loses to " +
+      computerSelection.toUpperCase()
+    );
   }
 }
 
